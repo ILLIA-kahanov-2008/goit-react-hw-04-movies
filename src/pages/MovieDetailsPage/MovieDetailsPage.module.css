@@ -1,0 +1,44 @@
+.movieMainInfo {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  background-image: linear-gradient(
+    rgba(19, 83, 126, 0.466),
+    rgba(19, 83, 126, 0.466)
+  );
+  border-radius: 15px;
+  margin-bottom: 20px;
+}
+
+.content {
+  margin-left: 20px;
+}
+
+.content p {
+  font-style: italic;
+  font-family: 'Times New Roman', Times, serif;
+  color: #757575;
+}
+
+.movieAddInfo {
+  padding: 15px;
+  background-image: linear-gradient(
+    rgba(47, 48, 58, 0.4),
+    rgba(19, 83, 126, 0.466)
+  );
+  border-radius: 15px;
+}
+
+.movieAddInfoTitle {
+  display: block;
+  /* position: sticky;
+  top: 100px; */
+  text-align: center;
+  /* text-decoration: underline rgb(196, 162, 129); */
+  color: #ab816c;
+}
+
+.addInfoList {
+  display: flex;
+  /* flex-direction: row; */
+}
