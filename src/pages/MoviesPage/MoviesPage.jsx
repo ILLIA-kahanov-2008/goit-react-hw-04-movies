@@ -12,21 +12,36 @@ import NotFoundPage from '../NotFoundPage/NotFoundPage';
 
 // };
 
-function MoviesPage({history}) {
+function MoviesPage({history, match}) {
   const [queryName, setQueryName] = useState('');
   const [pageNumber, setPageNumber] = useState(1);
   const [movies, setMovies] = useState([]);
   // const routeMatch = useRouteMatch();
   // console.log('MoviesPage routeMatch:', routeMatch);
-  const { push, location } = history; 
+  const { push, location } = history;
+  console.log('MOVIES_PAGE match :>> ', match);
+  console.log('MOVIES_PAGE location :>> ', location);
 
   useEffect(() => {
+    const searchQuery = new URLSearchParams(location.search).get('query');
+  console.log('MOVIES_PAGE didMount searchQuery :>> ', searchQuery);
+    setQueryName(searchQuery);
+    // eslint-disable-next-line
+  }, [])
+
+  useEffect(() => {
+    console.log("MOVIES_PAGE component render");
+    
     if (!queryName || !pageNumber) return;
+    
     searchMovies(pageNumber, queryName).then(setMovies);
-    location.search = `query=${queryName}&page=${pageNumber}`;
+    // location.search = `query=${queryName}&page=${pageNumber}`;
+  // eslint-disable-next-line
   }, [pageNumber, queryName]);
 
   const onFormSubmit = (queryName, pageNumber) => {
+    console.log('MOVIES_PAGE submit :>> ', queryName);
+    location.search = `query=${queryName}&page=${pageNumber}`;
     setQueryName(queryName);
     setPageNumber(pageNumber);
   };
@@ -38,8 +53,8 @@ function MoviesPage({history}) {
     pathname,
 })
 
-    const openMovieDetailsPage = (movieID) =>
-    push(getLocation("/movies/" + movieID));
+    const openMovieDetailsPage = (ID) =>
+    push(getLocation("/movies/" + ID));
 
   return (
     <>

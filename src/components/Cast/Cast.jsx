@@ -11,7 +11,7 @@ import default_photo from '../../images/default_photo.jpg';
 function Cast() {
   const [cast, setCast] = useState([]);
   const { movieID } = useParams();
-  // console.log(cast);
+  console.log(movieID);
   useEffect(() => {
     getMovieCast(movieID).then(setCast); // eslint-disable-next-line
   }, []);

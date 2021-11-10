@@ -1,33 +1,65 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { NavLink, Route, useParams } from 'react-router-dom';
 import { getMovieDetails } from '../../services/movies-api';
 import Cast from '../../components/Cast/Cast';
 import GoBackButton from '../../components/Buttons/GoBackBtn';
-import Reviews from '../../components/Reviews/Reviews'
-import default_poster from "../../images/default_poster.jpg";
-import s from './MovieDetailsPage.module.css'
+import Reviews from '../../components/Reviews/Reviews';
+import default_poster from '../../images/default_poster.jpg';
+import s from './MovieDetailsPage.module.css';
 // import PropTypes from 'prop-types';
 
 // MovieDetailsPage.propTypes = {
 
 // };
 
-function MovieDetailsPage() {
+function MovieDetailsPage({ history, match }) {
   const [movieDetails, setMovieDetails] = useState({});
-  const [genres, setGenres] = useState('')
-  const {movieID} = useParams();
-// console.log("MovieDetailsPage movieDetails", movieDetails);
+  const [genres, setGenres] = useState('');
+
+  const { movieID } = match.params;
+  const { push, location } = history;
+
+  //  const [locationStateFrom, setLocationStateFrom] = useState(location.state?.from);
+  // const [MoviesPageLocation, setMoviesPageLocation] = useState(location.state.from)
+
+  
+  // console.log('MOVIE_DETAILS_PAGE match :>> ', match);
+  // console.log("MovieDetailsPage movieDetails", movieDetails);
+
+  // const MoviesPageLocation = useRef(location.state.from);
+
   useEffect(() => {
-    getMovieDetails(movieID)
-      .then((res) => {
-        setMovieDetails(res);
-        setGenres(res.genres.map(({ name }) => name).join(', '))
-      }) // eslint-disable-next-line     
+    // setLocation();
+  console.log('MOVIE_DETAILS_PAGE didMount, location :>> ', location);
+    getMovieDetails(movieID).then(res => {
+      setMovieDetails(res);
+      setGenres(res.genres.map(({ name }) => name).join(', '));
+    });
+    // eslint-disable-next-line
   }, []);
 
+  // useEffect(() => {
+  //   !locationStateFrom && setLocationStateFrom((prev) => prev);
+  //   console.log('!locationStateFrom :>> ', !locationStateFrom);
+  //   console.log('locationStateFrom :>> ', locationStateFrom);
+  // }, [locationStateFrom])
+
+  // const setLocation = () => ({
+  //   state: {
+  //     from: location.state.from,
+  //   },
+  //   // pathname,
+  // });
+
+  // const backToMoviesPage = () =>
+  // push(setLocation());
+
+  // location.state.from = location;
+  location.state = {from: {pathname: "/movies"}}
+
   const {
-    // backdrop_path,    
+    // backdrop_path,
     original_title,
     title,
     vote_average,
@@ -35,56 +67,76 @@ function MovieDetailsPage() {
     overview,
     // id,
   } = movieDetails;
-// console.log("MovieDetailsPage",genres);
+  // console.log("MovieDetailsPage",genres);
   // const genresToString = ()=>genres.map(({ name }) => name).join(', ');
-  let poster = poster_path ? `https://image.tmdb.org/t/p/w185/${poster_path}` : default_poster;
+  let poster = poster_path
+    ? `https://image.tmdb.org/t/p/w185/${poster_path}`
+    : default_poster;
 
   return (
     <>
-      <GoBackButton/>
+      {/* <GoBackButton /> */}
       <section className={s.movieMainInfo}>
-        <img
-          src={poster}
-          alt={title}
-        />
+        <img src={poster} alt={title} />
         <article className={s.content}>
           <h2>{original_title}</h2>
           <p>User score: {vote_average}</p>
           <h3>Overview</h3>
           <p>{overview}</p>
-          <h4>Genres</h4>          
-          <p>{genres}</p>          
+          <h4>Genres</h4>
+          <p>{genres}</p>
         </article>
       </section>
       <section className={s.movieAddInfo}>
-        <h2 className={s.movieAddInfoTitle}>Additional information about <p>{original_title}</p></h2>
+        <h2 className={s.movieAddInfoTitle}>
+          Additional information about <p>{original_title}</p>
+        </h2>
         <ul className={s.addInfoList}>
           <li className={s.addInfoItem}>
-            <NavLink className="navLink" activeClassName="activeNavLink" to={`/movies/${movieID}/cast` }>
-            Cast
+            <NavLink
+              className="navLink"
+              activeClassName="activeNavLink"
+              to={match.url + `/cast`}
+              // onClick={setLocation}
+            >
+              Cast
             </NavLink>
           </li>
           <li>
-            <NavLink className="navLink" activeClassName="activeNavLink" to={`/movies/${movieID}/reviews` }>
-            Reviews
+            <NavLink
+              className="navLink"
+              activeClassName="activeNavLink"
+              to={match.url + `/reviews`}
+              
+            >
+              Reviews
             </NavLink>
           </li>
-        </ul>        
-      {/* </section>
+        </ul>
+        {/* </section>
       <section> */}
-        <Route path="/movies/:movieID/cast">
-          <Cast />
-        </Route>
-        <Route path="/movies/:movieID/reviews">
-         <Reviews/>
-        </Route>
+        <Route path={match.path + '/cast'} component={Cast} />
+        {/* <Cast />
+        </Route> */}
+        <Route
+          path={match.path + '/reviews'}
+          // component={Reviews}
+          render={routerProps => (
+            <Reviews
+              {...routerProps}
+
+              // MoviesPageLocation={setLocation}
+            />
+          )}
+        />
+        {/* <Reviews/>
+        </Route> */}
       </section>
     </>
   );
 }
 
 export default MovieDetailsPage;
-
 
 // import { useState, useEffect } from 'react';
 // import { useParams } from 'react-router-dom';

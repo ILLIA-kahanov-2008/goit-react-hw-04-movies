@@ -8,15 +8,20 @@ import default_photo from '../../images/default_photo.jpg';
 
 // Reviews.propTypes = {};
 
-function Reviews() {
+function Reviews({history}) {
   const [reviews, setReviews] = useState(null);
   const { movieID } = useParams();
+  const { push, location } = history;
 
   useEffect(() => {
+    // push(MoviesPageLocation("/movies"));
+    console.log("REVIEWS component render, location:", location);    
     getMovieReviews(movieID).then(res => {
       setReviews(res);
     }); // eslint-disable-next-line
   }, []);
+
+    location.state = {from: {pathname: "/movies"}}
 
   return (
     <>
@@ -24,8 +29,9 @@ function Reviews() {
         <ul className={s.reviewsList}>
           {reviews.map(({ author, content, id, author_details }) => {
             let authorAvatar =
-              !author_details.avatar_path ||
-              author_details.avatar_path.includes('/https://')
+              author_details.avatar_path
+              //   ||
+              // author_details.avatar_path.includes('/https://')
                 ? `https://image.tmdb.org/t/p/w92${author_details.avatar_path}`
                 : default_photo;
             return (
@@ -46,8 +52,9 @@ function Reviews() {
           })}
         </ul>
       ) : (
-        <h2>So sorry:(, but we don't have any reviews for this movie</h2>
-      )}
+        <h2>So sorry:'(', but we don't have any reviews for this movie</h2>
+      )
+      }
     </>
   );
 }

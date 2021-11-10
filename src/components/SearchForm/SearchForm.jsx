@@ -19,6 +19,7 @@ function SearchForm({ onSubmit }) {
       return;
     }
     onSubmit(query, pageNumber);
+    console.log('SEARCH_FORM submit :>> ', query);
     setQuery('');
   };
 

@@ -9,10 +9,15 @@ import styles from './GoBackBtn.module.css'
 // };
 
 function GoBackButton() {
-  const { push, location } = useHistory();  
-  console.log('GoBackButton component location', location);
+  const { push, location } = useHistory();
+  // const history = useHistory();
+  console.log('GO_BACK_BUTTON component location STATE:', location.state);
+  // console.log('GO_BACK_BUTTON component history:', history);
   // const handleGoBack = () => 
-  const handleBtnClick = ()=> push(location.state?.from || "/");
+  const handleBtnClick = () => {
+    push(location.state?.from || "/")
+    console.log('location.state >> ', location.state)
+  };
   return (
     <button
       className={styles.button}

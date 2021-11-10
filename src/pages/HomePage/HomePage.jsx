@@ -12,6 +12,7 @@ import default_backdrop from '../../images/default_backdrop.jpg';
 
 function HomePage({  
   history,
+  match
 }) {
   const [movies, setMovies] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -19,8 +20,9 @@ function HomePage({
   const { push, location } = history;
 
   useEffect(() => {
-   if (!currentPage) { return };
-    console.log('didUpdate HomePage pageNumber :>> ', currentPage);
+  //  if (!currentPage) { return };
+    console.log('didUpdate HOME PAGE pageNumber :>> ', currentPage);
+    console.log('didUpdate HOME PAGE match :>> ', match);
       getTrending(currentPage)
         .then(response => {
           setMovies([...movies, ...response.results]);
@@ -32,7 +34,7 @@ function HomePage({
 
   useEffect(() => {
     document.documentElement.scrollTop = 0;
-    console.log('HomePage didMount', document.documentElement);
+    console.log('HOME PAGE didMount');
 
     getTrending(currentPage)
       .then((response) => {
@@ -51,7 +53,7 @@ function HomePage({
       console.log('scrolling HomePage');
 
       let differenceHeight = e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight);      
-      if (differenceHeight < 200 && currentPage < totalPages) {
+      if (differenceHeight < (window.innerHeight/3) && currentPage < totalPages) {
         console.log('differenceHeight < 200:', differenceHeight);      
         setCurrentPage(prevPage => prevPage + 1)
   }
