@@ -56,7 +56,7 @@ function MovieDetailsPage({ history, match }) {
   // push(setLocation());
 
   // location.state.from = location;
-  location.state = {from: {pathname: "/movies"}}
+  // location.state = {from: {pathname: "/movies"}}
 
   const {
     // backdrop_path,
@@ -73,9 +73,14 @@ function MovieDetailsPage({ history, match }) {
     ? `https://image.tmdb.org/t/p/w185/${poster_path}`
     : default_poster;
 
+ const handleBtnClick = () => {
+    push(location.state?.from || "/")
+    console.log('GO_BACK_BUTTON clicked, location.state >> ', location.state)
+  };
+  
   return (
     <>
-      {/* <GoBackButton /> */}
+      <GoBackButton cbOnClick={handleBtnClick}/>
       <section className={s.movieMainInfo}>
         <img src={poster} alt={title} />
         <article className={s.content}>
@@ -89,14 +94,19 @@ function MovieDetailsPage({ history, match }) {
       </section>
       <section className={s.movieAddInfo}>
         <h2 className={s.movieAddInfoTitle}>
-          Additional information about <p>{original_title}</p>
+          Additional information about <p>'{original_title}'</p>
         </h2>
         <ul className={s.addInfoList}>
           <li className={s.addInfoItem}>
             <NavLink
               className="navLink"
               activeClassName="activeNavLink"
-              to={match.url + `/cast`}
+              to={{
+                pathname: match.url + `/cast`,
+               state: {
+                  from: location.state?.from || "/movies"
+                },
+              }}
               // onClick={setLocation}
             >
               Cast
@@ -106,7 +116,12 @@ function MovieDetailsPage({ history, match }) {
             <NavLink
               className="navLink"
               activeClassName="activeNavLink"
-              to={match.url + `/reviews`}
+              to={{
+                pathname: match.url + `/reviews`,
+                state: {
+                  from: location.state?.from || "/movies"
+                },
+              }}
               
             >
               Reviews
@@ -118,16 +133,15 @@ function MovieDetailsPage({ history, match }) {
         <Route path={match.path + '/cast'} component={Cast} />
         {/* <Cast />
         </Route> */}
-        <Route
-          path={match.path + '/reviews'}
-          // component={Reviews}
-          render={routerProps => (
-            <Reviews
-              {...routerProps}
+        <Route path={match.path + '/reviews'}
+          component={Reviews}
+          // render={routerProps => (
+          //   <Reviews
+          //     {...routerProps}
 
-              // MoviesPageLocation={setLocation}
-            />
-          )}
+          //     // MoviesPageLocation={setLocation}
+            // />
+          //  )} 
         />
         {/* <Reviews/>
         </Route> */}

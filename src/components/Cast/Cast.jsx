@@ -11,13 +11,12 @@ import default_photo from '../../images/default_photo.jpg';
 function Cast() {
   const [cast, setCast] = useState([]);
   const { movieID } = useParams();
-  console.log(movieID);
+  console.log("CAST rendered, film ID:", movieID);
   useEffect(() => {
     getMovieCast(movieID).then(setCast); // eslint-disable-next-line
   }, []);
   return (
-    <>
-      {/* <h1>IT's Cast rendering</h1> */}
+    <>     
       <ul className={s.castList}>
         {cast.map(
           ({ cast_id, profile_path, original_name, character, name }) => {

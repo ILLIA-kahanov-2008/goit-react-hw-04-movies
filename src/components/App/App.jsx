@@ -1,11 +1,13 @@
 import './App.css';
 import { lazy, Suspense } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 // import { getTrending } from "../../services/movies-api";
 import { useState, useEffect } from 'react';
 // import { useHistory, useLocation } from 'react-router';
 // import Container from '../Container/Container';
 import AppHeader from '../AppHeader/AppHeader';
+import LoaderComponent from '../Loader/Loader';
+// import Modal from '../Modal/Modal';
 
 const MoviesPage = lazy(()=> import('../../pages/MoviesPage/MoviesPage') /*webpackChunkName: MoviesPage*/);
 const HomePage = lazy(() => import('../../pages/HomePage/HomePage') /*webpackChunkName: HomePage*/);
@@ -13,22 +15,33 @@ const MovieDetailsPage = lazy(() => import('../../pages/MovieDetailsPage/MovieDe
 const NotFoundPage = lazy(() => import('../../pages/NotFoundPage/NotFoundPage') /*webpackChunkName: NotFoundPage*/);
 
 function App() {
-  
+  // const [showModal, setShowModal] = useState(false);
+
+  // const toggleModal = () => setShowModal(!showModal);
+
   return (
     <>
     {/* <Container> */}
       <AppHeader />      
-        <Suspense fallback="Loading...">
+      <Suspense fallback={<LoaderComponent page="" queryName="" />}>
            <Switch>
           <Route exact path="/" component={HomePage} />
           <Route exact path="/movies" component={MoviesPage} />          
           <Route path="/movies/:movieID" component={MovieDetailsPage}/>
-          <Route>
-            <NotFoundPage />
-          </Route>
+          <Route path="/notFound" component={NotFoundPage} />
+            {/* <NotFoundPage />
+          </Route> */}
+          {/* <Redirect></Redirect> */}
         </Switch>
        </Suspense>
-
+      {/* {showModal && (
+          <Modal
+            onClose={toggleModal}
+            // altImageName={altImageName}
+            // imageURL={modalImageURL}
+            // resetAppOptions={resetModalOptionsInState}
+          />
+        )} */}
       {/* <footer>
         <span className="footer__text">&copy; ILLIA Kahanov GOIT FE-35 Student 2021</span>
       </footer> */}

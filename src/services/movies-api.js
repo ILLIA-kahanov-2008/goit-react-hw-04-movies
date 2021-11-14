@@ -34,7 +34,7 @@ export async function searchMovies(pageNumber, searchQuery) {
   let url = endPoint + params;
   try {
     const result = await axios.get(url);
-    const movies = result.data.results
+    const movies = result.data
      if (result.status === 400) throw new Error();
       // console.log(result);
     if (result.status === 200) return movies;

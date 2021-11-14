@@ -21,7 +21,7 @@ function Reviews({history}) {
     }); // eslint-disable-next-line
   }, []);
 
-    location.state = {from: {pathname: "/movies"}}
+    // location.state = {from: {pathname: "/movies"}}
 
   return (
     <>
