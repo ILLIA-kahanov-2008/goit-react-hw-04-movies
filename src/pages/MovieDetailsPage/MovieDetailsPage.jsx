@@ -7,6 +7,7 @@ import GoBackButton from '../../components/Buttons/GoBackBtn';
 import Reviews from '../../components/Reviews/Reviews';
 import default_poster from '../../images/default_poster.jpg';
 import s from './MovieDetailsPage.module.css';
+import PageTitle from '../../components/PageTitle/PageTitle';
 // import PropTypes from 'prop-types';
 
 // MovieDetailsPage.propTypes = {
@@ -16,6 +17,7 @@ import s from './MovieDetailsPage.module.css';
 function MovieDetailsPage({ history, match }) {
   const [movieDetails, setMovieDetails] = useState({});
   const [genres, setGenres] = useState('');
+  const [titleText, setTitleText] = useState('');
 
   const { movieID } = match.params;
   const { push, location } = history;
@@ -34,6 +36,7 @@ function MovieDetailsPage({ history, match }) {
   console.log('MOVIE_DETAILS_PAGE didMount, location :>> ', location);
     getMovieDetails(movieID).then(res => {
       setMovieDetails(res);
+      setTitleText(`${res.title} details`)
       setGenres(res.genres.map(({ name }) => name).join(', '));
     });
     // eslint-disable-next-line
@@ -80,10 +83,12 @@ function MovieDetailsPage({ history, match }) {
   
   return (
     <>
-      <GoBackButton cbOnClick={handleBtnClick}/>
+      
+      <PageTitle text={titleText} />
       <section className={s.movieMainInfo}>
         <img src={poster} alt={title} />
         <article className={s.content}>
+         
           <h2>{original_title}</h2>
           <p>User score: {vote_average}</p>
           <h3>Overview</h3>
@@ -146,6 +151,9 @@ function MovieDetailsPage({ history, match }) {
         {/* <Reviews/>
         </Route> */}
       </section>
+      <GoBackButton
+        // cbOnClick={handleBtnClick}
+      />
     </>
   );
 }

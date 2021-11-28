@@ -1,5 +1,5 @@
 
-import Loader from 'react-loader-spinner';
+import Loader from 'react-js-loader';
 import styled from 'styled-components';
 
 const Styles = styled.div`
@@ -26,22 +26,22 @@ const Styles = styled.div`
   }
 `;
 
-function LoaderComponent ({page, queryName}) {
+function LoaderComponent ({title}) {
   return (
     
    <Styles>
               <div className="selector1">
                 <div className="selector2">
                   <Loader
-                    type={'spinner-circle'}
+                    type={'rectangular-ping'}
                     bgColor={'#3f51b5'}
-                    title={''}
+                    title={(title)?title:'Loading...'}
                     color={'#2a2a2a'}
                     size={300}
                   />
-                  <p className="selector3">
+                  {/* <p className="selector3">
                     Loading...{page} page of {queryName}
-                  </p>
+                  </p> */}
                 </div>
               </div>
             </Styles>
@@ -52,3 +52,23 @@ function LoaderComponent ({page, queryName}) {
 }
 
 export default LoaderComponent;
+
+// import Loader from 'react-js-loader';
+// import s from './Loader.module.css';
+
+// function LoaderComponent() {
+//   return (
+//     <>
+//       <Loader
+//         type={'bubble-loop'}
+//         bgColor={'#3f51b5'}
+//         title={'Loading...'}
+//         color={'#2a2a2a'}
+//         size={300}
+//       />
+//       <p className={s.LoaderText}></p>
+//     </>
+//   );
+// }
+
+// export default LoaderComponent;

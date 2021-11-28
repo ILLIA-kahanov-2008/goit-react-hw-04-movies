@@ -50,7 +50,9 @@ function HomePage({
   }, []);
 
     const scrollHandler = (e) => {
-      console.log('scrolling HomePage');
+      console.log('scrolling HomePage', e.target.documentElement);
+      console.log('scrollHeight HomePage', e.target.documentElement.scrollHeight);
+      console.log('scrollTop HomePage', e.target.documentElement.scrollTop);
 
       let differenceHeight = e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight);      
       if (differenceHeight < (window.innerHeight/3) && currentPage < totalPages) {

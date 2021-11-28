@@ -1,7 +1,8 @@
 import { NavLink } from 'react-router-dom';
 import s from './Navigation.module.css'
 
-export function Navigation() {
+export function Navigation({ history, match }) {
+  // console.log('NAVIGATION match :>> ', match);
   return (
     <nav className={s.navList}>
       

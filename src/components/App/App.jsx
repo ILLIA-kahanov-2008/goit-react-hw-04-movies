@@ -18,12 +18,12 @@ function App() {
   // const [showModal, setShowModal] = useState(false);
 
   // const toggleModal = () => setShowModal(!showModal);
-
+  
   return (
     <>
     {/* <Container> */}
       <AppHeader />      
-      <Suspense fallback={<LoaderComponent page="" queryName="" />}>
+      <Suspense fallback={<LoaderComponent />}>
            <Switch>
           <Route exact path="/" component={HomePage} />
           <Route exact path="/movies" component={MoviesPage} />          

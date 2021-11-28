@@ -11,18 +11,19 @@ import styles from './GoBackBtn.module.css'
 function GoBackButton({cbOnClick}) {
   const { push, location } = useHistory();
   // const history = useHistory();
-  console.log('GO_BACK_BUTTON component location STATE:', location.state);
+  
   // console.log('GO_BACK_BUTTON component history:', history);
   // const handleGoBack = () => 
-  // const handleBtnClick = () => {
-  //   push(location.state?.from || "/")
-  //   console.log('location.state >> ', location.state)
-  // };
+  const handleBtnClick = () => {
+    push(location.state?.from || "/")
+    // console.log('location.state >> ', location.state)
+    console.log('GO_BACK_BUTTON  clicked, location STATE:', location.state);
+  };
   return (
     <button
       className={styles.button}
             type="button"
-            onClick={cbOnClick}
+            onClick={handleBtnClick}
             // style={{visibility: btnVisibility}}
           >
             GO BACK

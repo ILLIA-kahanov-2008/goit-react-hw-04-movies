@@ -6,15 +6,16 @@ import styles from './AppHeader.module.css';
 import { useEffect } from 'react/cjs/react.development';
 
 export default function AppHeader() {
-  const { push, location } = useHistory();
+  const history = useHistory();
   // const handleBtnClick = () => {
   //   push(location.state?.from || "/")
   //   console.log('GO_BACK_BUTTON clicked, location.state >> ', location.state)
   // };
 
-  useEffect(() => {
-  console.log('APP_HEADER change location.state:>> ', location.state);
-},[location.state])
+  console.log('APP_HEADER history :>> ', history);
+//   useEffect(() => {
+//   console.log('APP_HEADER change location.state:>> ', history.location.state);
+// },[history.location.state])
 
   return (
     
