@@ -1,10 +1,8 @@
 .castList {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   overflow-x: scroll;
-
-  /* background-color: linen; */
 }
 
 .castItem {
@@ -13,7 +11,6 @@
   text-align: center;
   margin-right: 10px;
   margin-bottom: 10px;
-  /* padding: 5px 0; */
 }
 
 .castName {
@@ -27,8 +24,3 @@
   font-style: italic;
   color: #757575;
 }
-/* 
-.actorPhoto {
-  max-width: 185px;
-  height: 280px;
-} */

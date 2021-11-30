@@ -31,14 +31,10 @@
 
 .movieAddInfoTitle {
   display: block;
-  /* position: sticky;
-  top: 100px; */
   text-align: center;
-  /* text-decoration: underline rgb(196, 162, 129); */
   color: #ab816c;
 }
 
 .addInfoList {
   display: flex;
-  /* flex-direction: row; */
 }

@@ -1,16 +1,25 @@
 .title {
-  padding: 8px;
-  margin-top: 0;
-  border-radius: 8px;
   color: #757575;
   font-size: 40px;
   font-weight: bold;
-  text-align: center;
+}
+
+.titleContainer {
+  top: 65px;
+
+  position: sticky;
+  z-index: 3;
+
+  padding: 8px;
+  margin-top: 0;
+  margin-bottom: 10px;
+  border-radius: 8px;
   background-image: repeating-linear-gradient(
     45deg,
-    /* #606dbc, */ rgba(19, 83, 126),
+    rgba(19, 83, 126),
     rgba(19, 83, 126) 50px,
-    /* #606dbc 50px, */ rgb(9, 64, 100) 100px,
+    rgb(9, 64, 100) 100px,
     rgb(30, 96, 139) 150px
   );
+  text-align: center;
 }

@@ -11,108 +11,34 @@
   text-decoration: none;
 }
 .card {
-  /*position: relative;
-  /*display: flex;
-  flex-direction: column;
-  justify-content: space-between; */
-
   height: 100%;
   padding-bottom: 8px;
   text-align: center;
 }
 
 .cardContent {
-  /* display: flex;
-  flex-direction: column;
-  padding: 8px;
-  flex-grow: 1; */
   padding: 30px 0;
-  /* text-align: center; */
   color: #757575;
 }
 
 .cardImage {
-  /* height: 300px; */
   object-fit: cover;
   max-width: 100%;
 }
 
 .movieName {
-  /* margin-top: 16px;
-  margin-bottom: 0;
-  font-size: 24px;
-  font-weight: 500; */
   margin-bottom: 10px;
-  font-weight: 500;
-  font-size: 16px;
+  font-weight: 900;
+  font-size: 20px;
   line-height: 1.19;
 }
 
-.movieReleaseDate {
-  /* line-height: 1.5;
-  flex-grow: 1; */
+.movieName:hover {
+  color: brown;
 }
 
 .movieRating {
-  /* display: flex;
-  align-items: center;
-  margin-top: 24px;
-  font-size: 20px; */
   font-size: 16px;
   line-height: 1.19;
   margin-bottom: 16px;
-}
-
-.movieRating i {
-  margin-right: 8px;
-  font-size: 24px;
-}
-
-.portfolio__item {
-  position: relative;
-  overflow: hidden;
-  margin-bottom: 30px;
-  border: 1px solid #eeeeee;
-
-  @media screen and (min-width: 768px) {
-    margin-top: 30px;
-    margin-left: 30px;
-    margin-bottom: 0;
-    flex-basis: calc(
-      (100% - (30px * var(--number-of-items))) / var(--number-of-items)
-    );
-  }
-
-  @media screen and (min-width: 1200px) {
-    --number-of-items: 3;
-  }
-}
-.portfolio__link {
-  display: block;
-  height: 100%;
-  text-decoration: none;
-  color: var(--main-text-color);
-  background-color: var(--white-color);
-  transition: box-shadow var(--animation);
-}
-.portfolio__link:hover,
-.portfolio__link:focus {
-  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
-    1px 4px 6px rgba(0, 0, 0, 0.16);
-}
-
-.portfolio__item-description {
-  padding: 20px 24px;
-}
-.portfolio__item-title {
-  margin-bottom: 4px;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 2;
-  letter-spacing: 0.06em;
-  color: var(--title-color);
-}
-.portfolio__item-filter {
-  font-size: 16px;
-  line-height: 1.875;
 }

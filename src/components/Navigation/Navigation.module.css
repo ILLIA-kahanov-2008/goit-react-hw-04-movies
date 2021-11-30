@@ -6,7 +6,6 @@
 }
 
 :global(.navLink) {
-  /* display: inline-block; */
   line-height: 1.5;
   font-size: 20px;
   padding: 15px;

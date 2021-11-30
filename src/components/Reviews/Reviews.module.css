@@ -1,20 +1,9 @@
-.reviewsList {
-  /* display: flex;
-  flex-direction: row;
-  overflow-x: scroll; */
-
-  /* background-color: linen; */
-}
-
 .reviewsItem {
   display: flex;
   max-height: 200px;
-  /* overflow: hidden; */
   border: linen 1px solid;
-  /* text-align: center; */
   margin-bottom: 10px;
   padding: 10px;
-  /* font-family: Arial, Helvetica, sans-serif; */
 }
 
 .authorInfo {
@@ -27,7 +16,6 @@
   border-radius: 50%;
   max-width: 92px;
   text-align: center;
-  /* height: 280px; */
 }
 
 .authorName {

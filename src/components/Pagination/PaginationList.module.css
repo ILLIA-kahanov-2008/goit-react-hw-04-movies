@@ -1,0 +1,52 @@
+.paginationList {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.paginationItem {
+  cursor: pointer;
+}
+
+.paginationItem:not(:last-child) {
+  margin-right: 8px;
+}
+
+.link:active {
+  background-color: #757575;
+  border-radius: 50%;
+  color: brown;
+}
+
+.link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  text-decoration: none;
+
+  min-width: 30px;
+  height: 30px;
+  color: #757575;
+
+  font-size: 18px;
+  line-height: 1.21;
+  text-align: center;
+
+  padding: 5px;
+
+  font-style: normal;
+  font-weight: 700;
+}
+
+.link:hover {
+  color: brown;
+}
+
+.activeLink {
+  color: #d3cece;
+  font-weight: 900;
+  border-radius: 50%;
+  background-color: #ab816c;
+}

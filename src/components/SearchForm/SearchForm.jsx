@@ -1,5 +1,6 @@
 import { useState } from 'react';
-// import PropTypes from 'prop-types';
+import SearchIcon from '@material-ui/icons/Search';
+import PropTypes from 'prop-types';
 
 import styles from './SearchForm.module.css';
 
@@ -27,6 +28,7 @@ function SearchForm({ onSubmit }) {
    <div className={styles.SearchBar}>
       <form className={styles.SearchForm} onSubmit={handleSubmit}>
         <button type="submit" className={styles.SearchFormBtn}>
+          <SearchIcon/>
           <span className={styles.SearchFormBtnLabel}>Search</span>
         </button>
         <input
@@ -44,8 +46,8 @@ function SearchForm({ onSubmit }) {
   );
 }
 
-// SearchForm.propTypes = {
-//   onSubmit: PropTypes.func.isRequired,
-// };
+SearchForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};
 
 export default SearchForm;
