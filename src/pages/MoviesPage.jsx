@@ -141,8 +141,10 @@ function MoviesPage({ history }) {
   if (status === Status.RESOLVED || status === Status.PENDING) {
     return (
       <>
-        <PageTitle text={titleText}></PageTitle>
-        <SearchForm onSubmit={onFormSubmit} />
+        <PageTitle text={titleText}>
+          <SearchForm onSubmit={onFormSubmit} />
+        </PageTitle>
+        
         {movies.length > 0 && (
           <InfiniteScroll
             dataLength={movies.length} //This is important field to render the next data

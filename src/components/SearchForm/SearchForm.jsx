@@ -9,7 +9,7 @@ function SearchForm({ onSubmit }) {
 
   const handleChange = e => {
     const { name, value } = e.target;
-    name === 'query' && setQuery(value.trim());
+    name === 'query' && setQuery(value);
   };
 
   const handleSubmit = e => {
@@ -20,7 +20,6 @@ function SearchForm({ onSubmit }) {
       return;
     }
     onSubmit(query, pageNumber);
-    console.log('SEARCH_FORM submit :>> ', query);
     setQuery('');
   };
 
