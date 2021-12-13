@@ -28,9 +28,9 @@ function Reviews() {
 
   return (
     <>
-      {isLoading && <h2>Loading</h2>}
+      {isLoading && <h2 className={s.messageText}>Loading...</h2>}
       {error ? (
-        <h2>{error}</h2>
+        <h2 className={s.messageText}>{error}</h2>
       ) : (
         <ul className={s.reviewsList}>
           {reviews.map(({ author, content, id, author_details }) => {

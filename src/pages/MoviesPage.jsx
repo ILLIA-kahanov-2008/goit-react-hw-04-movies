@@ -4,12 +4,11 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 
 import { searchMovies } from '../services/movies-api';
 
-import default_backdrop from '../images/default_backdrop.jpg';
 import NotFoundPage from './NotFoundPage';
 import LoaderComponent from '../components/Loader/LoaderComponent';
 import PageTitle from '../components/PageTitle/PageTitle';
 import SearchForm from '../components/SearchForm/SearchForm';
-import GalleryItem from '../components/GalleryItem/GalleryItem';
+import GalleryList from '../components/GalleryList/GalleryList'
 
 const Status = {
   IDLE: 'idle',
@@ -72,7 +71,7 @@ function MoviesPage({ history }) {
       setMovies(location.state.movies);
       setPageScrollHeight(location.state.pageScrollHeight);
       setTotalPages(location.state.totalPages);
-      setTitleText(location.state.titleText);
+      setTitleText(location.state.pageTitleText);
       setStatus(Status.RESOLVED);
     }
   }, [queryName]);
@@ -111,23 +110,6 @@ function MoviesPage({ history }) {
     setMovies([]);
   };
 
-  const getLocation = pathname => ({
-    state: {
-      from: location,
-    },
-    pathname,
-  });
-
-  const openMovieDetailsPage = ID => {
-    push(getLocation('/movies/' + ID));
-    location.state = {
-      movies,
-      pageScrollHeight: document.documentElement.scrollTop,
-      totalPages,
-      titleText,
-    };
-  };
-
   if (status === Status.IDLE) {
     return (
       <>
@@ -157,32 +139,7 @@ function MoviesPage({ history }) {
               </p>
             }
           >
-            <ul className="moviesList" id="moviesList">
-              {movies.map(
-                ({
-                  id,
-                  backdrop_path,
-                  original_title,
-                  vote_average,
-                  release_date,
-                }) => {
-                  let backdrop = backdrop_path
-                    ? `https://image.tmdb.org/t/p/w780/${backdrop_path}`
-                    : default_backdrop;
-                  return (
-                    <GalleryItem
-                      key={id}
-                      backdrop={backdrop}
-                      title={original_title}
-                      rating={vote_average}
-                      releaseDate={release_date}
-                      movieID={id}
-                      cbOnClick={openMovieDetailsPage}
-                    />
-                  );
-                },
-              )}
-            </ul>
+          <GalleryList movies={movies} totalPages={totalPages} pageTitleText={titleText} />            
           </InfiniteScroll>
         )}
         {status === Status.PENDING && <LoaderComponent title={loaderTitle} />}

@@ -38,3 +38,11 @@
   color: #757575;
   overflow-y: scroll;
 }
+
+.messageText {
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+  margin: 15px 0;
+  color: rgba(171, 129, 108, 0.795);
+}

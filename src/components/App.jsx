@@ -1,25 +1,24 @@
 import { lazy, Suspense } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 
-import AppHeader from '../AppHeader/AppHeader';
-import LoaderComponent from '../Loader/LoaderComponent';
+import AppHeader from './AppHeader/AppHeader';
+import LoaderComponent from './Loader/LoaderComponent';
 
-import './App.css';
 
 const MoviesPage = lazy(
-  () => import('../../pages/MoviesPage') /*webpackChunkName: MoviesPage*/,
+  () => import('../pages/MoviesPage') /*webpackChunkName: MoviesPage*/,
 );
 const HomePage = lazy(
-  () => import('../../pages/HomePage') /*webpackChunkName: HomePage*/,
+  () => import('../pages/HomePage') /*webpackChunkName: HomePage*/,
 );
 const MovieDetailsPage = lazy(
   () =>
     import(
-      '../../pages/MovieDetailsPage/MovieDetailsPage'
+      '../pages/MovieDetailsPage'
     ) /*webpackChunkName: MovieDetailsPage*/,
 );
 const NotFoundPage = lazy(
-  () => import('../../pages/NotFoundPage') /*webpackChunkName: NotFoundPage*/,
+  () => import('../pages/NotFoundPage') /*webpackChunkName: NotFoundPage*/,
 );
 
 function App() {

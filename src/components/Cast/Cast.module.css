@@ -1,7 +1,8 @@
 .castList {
+  min-height: 50px;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
   overflow-x: scroll;
 }
 
@@ -23,4 +24,12 @@
   margin: 4px 0;
   font-style: italic;
   color: #757575;
+}
+
+.messageText {
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+  margin: 15px 0;
+  color: rgba(171, 129, 108, 0.795);
 }

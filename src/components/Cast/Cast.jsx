@@ -21,9 +21,9 @@ function Cast() {
   }, []);
   return (
   <>
-  {isLoading && <p>Loading</p>}
+  {isLoading && <h2 className={s.messageText}>Loading...</h2>}
   {error ? (
-    <p>{error}</p>
+    <h2 className={s.messageText}>{error}</h2>
   ) : (
     <ul className={s.castList}>
       {cast.map(({ cast_id, profile_path, original_name, character, name }) => {

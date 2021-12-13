@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 import PropTypes from 'prop-types';
 
@@ -21,10 +22,18 @@ function GalleryItem({
   releaseDate,
   cbOnClick,
 }) {
-  const handleClick = () => cbOnClick(movieID);
+  const location = useLocation();  
+  const handleClick = () => cbOnClick();
   return (
     <li className={styles.item} onClick={handleClick}>
-      <Link to={`/movies/${movieID}`} className={styles.Link}>
+      <Link className={styles.Link}
+      to={{
+                pathname: `/movies/${movieID}`,
+                state: {
+                  from: location,
+                },
+        }}
+      >
         <article className={styles.card}>
           <img className={styles.cardImage} src={backdrop} alt={title} />
           <div className={styles.cardContent}>

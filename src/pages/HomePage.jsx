@@ -3,12 +3,13 @@ import React from 'react';
 import { getTrending } from '../services/movies-api';
 
 import { useState, useEffect } from 'react';
-import GalleryItem from '../components/GalleryItem/GalleryItem';
+// import GalleryItem from '../components/GalleryItem/GalleryItem';
 import PageTitle from '../components/PageTitle/PageTitle';
 import LoaderComponent from '../components/Loader/LoaderComponent';
 import PaginationList from '../components/Pagination/PaginationList';
 import NotFoundPage from './NotFoundPage';
-import default_backdrop from '../images/default_backdrop.jpg';
+// import default_backdrop from '../images/default_backdrop.jpg';
+import GalleryList from '../components/GalleryList/GalleryList';
 
 const Status = {
   IDLE: 'idle',
@@ -19,7 +20,7 @@ const Status = {
 
 function HomePage({ history }) {
   const [movies, setMovies] = useState([]);
-  const [currentPage, setCurrentPage] = useState(3);
+  const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const { push, location } = history;
   const [status, setStatus] = useState(Status.PENDING);
@@ -50,13 +51,14 @@ function HomePage({ history }) {
   }, []);
 
   useEffect(() => {
+    !currentPage && setPageScrollHeight(0); 
     window.scrollTo({
       top: pageScrollHeight,
       behavior: 'smooth',
     });
-  }, [pageScrollHeight]);
+  }, [pageScrollHeight, currentPage]);
 
-  const handlePageChange = pageNumber => {
+  const handlePageChange = pageNumber => {    
     setStatus(Status.PENDING);
     setLoaderTitle(`Loading ${pageNumber} page`);
     getTrending(pageNumber)
@@ -74,22 +76,7 @@ function HomePage({ history }) {
         setErrorMessage(error.message);
       });
     setCurrentPage(pageNumber);
-  };
-
-  const getLocation = pathname => ({
-    state: {
-      from: location,
-    },
-    pathname,
-  });
-
-  const openMovieDetailsPage = movieID => {
-    push(getLocation('/movies/' + movieID));
-    location.state = {
-      movies,
-      pageScrollHeight: document.documentElement.scrollTop,
-      totalPages,
-    };
+    
   };
 
   if (status === Status.RESOLVED || status === Status.PENDING) {
@@ -104,34 +91,7 @@ function HomePage({ history }) {
             handlePageChange={handlePageChange}
           />
         </PageTitle>
-
-        <ul className="moviesList" id="moviesList">
-          {movies &&
-            movies.map(
-              ({
-                id,
-                backdrop_path,
-                original_title,
-                vote_average,
-                release_date,
-              }) => {
-                let backdrop = backdrop_path
-                  ? `https://image.tmdb.org/t/p/w780/${backdrop_path}`
-                  : default_backdrop;
-                return (
-                  <GalleryItem
-                    key={id}
-                    backdrop={backdrop}
-                    title={original_title}
-                    rating={vote_average}
-                    releaseDate={release_date}
-                    movieID={id}
-                    cbOnClick={openMovieDetailsPage}
-                  />
-                );
-              },
-            )}
-        </ul>
+        <GalleryList movies={movies} totalPages={totalPages} />        
         {status === Status.PENDING && <LoaderComponent title={loaderTitle} />}
       </>
     );
